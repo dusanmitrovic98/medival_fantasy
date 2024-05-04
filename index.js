@@ -3,6 +3,12 @@ const { token } = require('./config.json');
 const path = require('node:path');
 const fs = require('node:fs');
 
+// MongoDB Client
+
+
+
+// Discord Bot
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.cooldowns = new Collection();
