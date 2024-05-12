@@ -24,47 +24,7 @@ module.exports = {
         title: `${interaction.user.username}'s Profile 🛡️`,
         description: "Here is your character profile:",
         color: 0x0099ff,
-        fields: [
-          {
-            name: "Character Name",
-            value: user.characterName,
-            inline: false,
-          },
-          {
-            name: "Character Class",
-            value: user.characterClass,
-            inline: false,
-          },
-          {
-            name: "Character Race",
-            value: user.characterRace,
-            inline: false,
-          },
-          {
-            name: "Character Level",
-            value: user.characterLevel,
-            inline: false,
-          },
-          {
-            name: "Character XP",
-            value: user.characterXP,
-            inline: false,
-          },
-          {
-            name: "Character HP",
-            value: user.characterHP,
-            inline: false,
-          },
-          {
-            name: "Character MP",
-            value: user.characterMP,
-            inline: false,
-          },
-          {
-            name: "Stats:",
-            value: `STR: ${user.characterSTR}\nDEX: ${user.characterDEX}\nCON: ${user.characterCON}\nINT: ${user.characterINT}\nWIS: ${user.characterWIS}\nCHA: ${user.characterCHA}`,
-          },
-        ],
+        fields: [],
       };
 
       await interaction.reply({ embeds: [exampleEmbed] });

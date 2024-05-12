@@ -79,9 +79,6 @@ const deleteUserById = async (userId) => {
  * Creates a new user in the database.
  *
  * @param {Object} userData - The user data to be saved.
- * @param {string} userData.name - The name of the user.
- * @param {string} userData.email - The email of the user.
- * @param {string} userData.password - The password of the user.
  * @returns {Promise<User>} - A promise that resolves to the created user.
  * @throws {Error} - If there is an error while creating the user.
  */

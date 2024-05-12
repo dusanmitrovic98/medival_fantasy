@@ -29,6 +29,11 @@ module.exports = {
             name: "/profile",
             value: "",
             inline: false,
+          },
+          {
+            name: "/create-character",
+            value: "",
+            inline: false,
           }
         ],
       };

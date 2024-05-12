@@ -22,20 +22,6 @@ module.exports = {
         username: interaction.user.username,
         guildId: interaction.guild.id,
         guildName: interaction.guild.name,
-        characterId: null,
-        characterName: 'None',
-        characterClass: 'None',
-        characterRace: 'None',
-        characterLevel: 1,
-        characterXP: 0,
-        characterHP: 10,
-        characterMP: 5,
-        characterSTR: 10,
-        characterDEX: 10,
-        characterCON: 10,
-        characterINT: 10,
-        characterWIS: 10,
-        characterCHA: 10,
       });
 
       await user.save();
