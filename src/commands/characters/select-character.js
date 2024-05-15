@@ -4,6 +4,8 @@ const Character = require("../../services/characters/character.model.js");
 const User = require("../../services/users/user.model.js");
 
 module.exports = {
+  cooldown: 5,
+  category: "characters",
   data: new SlashCommandBuilder()
     .setName("select-character")
     .setDescription("Selects a character by ID")
@@ -34,7 +36,7 @@ module.exports = {
       user.selectedCharacterId = characterId;
       await user.save();
 
-      await interaction.reply(`Character ${character.Name} (ID: ${character.Id}) selected.`);
+      await interaction.reply(`Character \` ${character.Name} \` (ID: \` ${character.Id} \`) selected.`);
     } catch (error) {
       console.error(error);
       await interaction.reply("Error selecting character.");
