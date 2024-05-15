@@ -1,5 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
+
 const Character = require("../../services/characters/character.model.js");
+const User = require("../../services/users/user.model.js");
 
 module.exports = {
   cooldown: 5,
@@ -18,6 +20,13 @@ module.exports = {
 
     try {
       const character = await Character.findOne({ Id: characterId });
+      const memberId = interaction.member.user.id;
+
+      const user = await User.findOne({ userId: memberId })
+
+      if (!user) {
+        return await interaction.reply("You are not registered. Use the \`/register\` command to register.");
+      }
 
       if (!character) {
         await interaction.reply(`Character with ID ${characterId} not found.`);

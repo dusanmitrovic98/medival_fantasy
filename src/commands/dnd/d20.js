@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
 	cooldown: 5,
-	category: 'utility',
+	category: 'dnd',
 	data: new SlashCommandBuilder()
 		.setName('d20')
 		.setDescription('Rolls a d20 and responds with the result.'),

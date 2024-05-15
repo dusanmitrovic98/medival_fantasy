@@ -16,22 +16,72 @@ module.exports = {
         color: 0x0099ff,
         fields: [
           {
-            name: "/register",
+            name: "**\nGeneral:**",
             value: "",
             inline: false,
           }, 
           {
-            name: "/unsubscribe",
+            name: "/\`user\`",
+            value: "",
+            inline: false,
+          }, 
+          {
+            name: "/\`server\`",
+            value: "",
+            inline: false,
+          }, 
+          {
+            name: "/\`register\`",
+            value: "",
+            inline: false,
+          }, 
+          {
+            name: "/\`unsubscribe\`",
             value: "",
             inline: false,
           },
           {
-            name: "/profile",
+            name: "**\nCharacters:**",
+            value: "",
+            inline: false,
+          }, 
+          {
+            name: "/\`profile\`",
             value: "",
             inline: false,
           },
           {
-            name: "/create-character",
+            name: "/\`create-character\` [name] [class] [race]",
+            value: "",
+            inline: false,
+          },
+          {
+            name: "/\`remove-character\` [character-id]",
+            value: "",
+            inline: false,
+          },
+          {
+            name: "/\`power-up\` [character-id] [stat-name] [amount]",
+            value: "",
+            inline: false,
+          },
+          {
+            name: "/\`reset-stats\` [character-id]",
+            value: "",
+            inline: false,
+          },
+          {
+            name: "/\`my-characters\`",
+            value: "",
+            inline: false,
+          },
+          {
+            name: "**\nDND:**",
+            value: "",
+            inline: false,
+          }, 
+          {
+            name: "/\`d20\`",
             value: "",
             inline: false,
           }

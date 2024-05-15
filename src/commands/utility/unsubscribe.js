@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
+
 const User = require('../../services/users/user.model.js');
 
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
       const existingUser = await User.findOne({ userId: userId });
 
       if (!existingUser) {
-        await interaction.reply('You are not registered.');
+        await interaction.reply('You are not registered. Use the \`/register\` command to register.');
         return;
       }
 

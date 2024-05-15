@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
 
 const Character = require("../../services/characters/character.model.js");
+const User = require("../../services/users/user.model.js");
 const generateRandomId = require("../../utility/random-id.js");
 
 module.exports = {
@@ -44,6 +45,12 @@ module.exports = {
     const characterRace = interaction.options.getString("race");
     const memberId = interaction.member.user.id;
 
+    const user = await User.findOne({ userId: memberId })
+
+    if (!user) {
+      return await interaction.reply("You are not registered. Use the \`/register\` command to register.");
+    }
+
     try {
       // const latestCharacterId = await Character.findOne().sort({ Id: -1 }).limit(1);
       // const nextCharacterId = latestCharacterId ? latestCharacterId.Id + 1 : 1;
@@ -60,7 +67,7 @@ module.exports = {
         XP: 0,
         HP: 10,
         MP: 5,
-        StatusPoints: 5,
+        AttributePoints: 5,
         STR: 10,
         DEX: 10,
         CON: 10,
@@ -70,7 +77,14 @@ module.exports = {
       };
 
       const newCharacter = await Character.create(characterData);
-      await interaction.reply(`Created character ${newCharacter.Name} with id ${newCharacter.Id}. Class: ${newCharacter.Class}, Race: ${newCharacter.Race}`);
+
+      await User.findOneAndUpdate(
+        { userId: memberId },
+        { $push: { characters: newCharacter.Id } },
+        { new: true, upsert: true } 
+      );
+
+      await interaction.reply(`Created character \`${newCharacter.Name}\` with id \`${newCharacter.Id}\`. Class: \`${newCharacter.Class}\`, Race: \`${newCharacter.Race}\``);
     } catch (error) {
       console.error(error);
       await interaction.reply("Error creating character.");

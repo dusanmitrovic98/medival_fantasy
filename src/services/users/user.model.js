@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
     username: String,
     guildId: Number,
     guildName: String,
-    characters: Array,
-    selectedCharacterId: Number,
+    characters: [String],
+    selectedCharacterId: String,
 });
 
 const User = mongoose.model('User', userSchema);

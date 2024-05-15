@@ -10,7 +10,7 @@ const characterSchema = new mongoose.Schema({
   XP: Number,
   HP: Number,
   MP: Number,
-  StatusPoints: Number,
+  AttributePoints: Number,
   /**
    * STR: Strength
    *     - A measure of physical power and endurance.
