@@ -5,6 +5,8 @@ const fs = require('node:fs');
 const { token } = require('./config.json');
 const { connect } = require('./db.js');
 
+const baseDir = path.join(__dirname, 'src');
+
 // MongoDB Client
 
 connect();
@@ -14,7 +16,7 @@ const clientBot = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 clientBot.cooldowns = new Collection();
 clientBot.commands = new Collection();
-const foldersPath = path.join(__dirname, 'commands');
+const foldersPath = path.join(baseDir, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -31,7 +33,7 @@ for (const folder of commandFolders) {
 	}
 }
 
-const eventsPath = path.join(__dirname, 'events');
+const eventsPath = path.join(baseDir, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {

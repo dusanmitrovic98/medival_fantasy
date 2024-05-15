@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 
 const characterSchema = new mongoose.Schema({
-  Id: Number,
+  Id: String,
+  UserId: String,
   Name: String,
   Class: String,
   Race: String,
@@ -9,6 +10,7 @@ const characterSchema = new mongoose.Schema({
   XP: Number,
   HP: Number,
   MP: Number,
+  StatusPoints: Number,
   /**
    * STR: Strength
    *     - A measure of physical power and endurance.

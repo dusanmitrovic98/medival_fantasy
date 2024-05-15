@@ -1,9 +1,11 @@
 const { SlashCommandBuilder } = require("discord.js");
+
 const Character = require("../../services/characters/character.model.js");
+const generateRandomId = require("../../utility/random-id.js");
 
 module.exports = {
   cooldown: 5,
-  category: "utility",
+  category: "characters",
   data: new SlashCommandBuilder()
     .setName("create-character")
     .setDescription("Creates a new character")
@@ -40,13 +42,17 @@ module.exports = {
     const characterName = interaction.options.getString("name");
     const characterClass = interaction.options.getString("class");
     const characterRace = interaction.options.getString("race");
+    const memberId = interaction.member.user.id;
 
     try {
-      const latestCharacterId = await Character.findOne().sort({ Id: -1 }).limit(1);
-      const nextCharacterId = latestCharacterId ? latestCharacterId.Id + 1 : 1;
+      // const latestCharacterId = await Character.findOne().sort({ Id: -1 }).limit(1);
+      // const nextCharacterId = latestCharacterId ? latestCharacterId.Id + 1 : 1;
+      const nextCharacterId = generateRandomId();
+
 
       const characterData = {
         Id: nextCharacterId,
+        UserId: memberId,
         Name: characterName,
         Class: characterClass,
         Race: characterRace,
@@ -54,6 +60,7 @@ module.exports = {
         XP: 0,
         HP: 10,
         MP: 5,
+        StatusPoints: 5,
         STR: 10,
         DEX: 10,
         CON: 10,
@@ -63,7 +70,7 @@ module.exports = {
       };
 
       const newCharacter = await Character.create(characterData);
-      await interaction.reply(`Created character ${newCharacter.Name} with id ${newCharacter.Id}.`);
+      await interaction.reply(`Created character ${newCharacter.Name} with id ${newCharacter.Id}. Class: ${newCharacter.Class}, Race: ${newCharacter.Race}`);
     } catch (error) {
       console.error(error);
       await interaction.reply("Error creating character.");

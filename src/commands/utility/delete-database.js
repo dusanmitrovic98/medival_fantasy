@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('discord.js');
 
-const { adminId } = require('../../config.json');
-const { deleteDatabase } = require('../../db');
+const { adminId } = require('../../../config.json');
+const { deleteDatabase } = require('../../../db.js');
 
 module.exports = {
 	cooldown: 5,
