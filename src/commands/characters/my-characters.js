@@ -4,6 +4,8 @@ const User = require("../../services/users/user.model.js");
 const Character = require("../../services/characters/character.model.js");
 
 module.exports = {
+  cooldown: 5,
+  category: "characters",
   data: new SlashCommandBuilder()
     .setName("my-characters")
     .setDescription("Displays all characters of the user"),
@@ -28,7 +30,7 @@ module.exports = {
       }
 
       const characterList = characters.map((char, index) => {
-        return `${index + 1}. **\` ${char.Name} \`** (ID: \` ${char.Id} \`, Class: \` ${char.Class} \`, Race: \` ${char.Race} \`)`;
+        return `${index + 1}. **\` ${char.Name} \`** (ID: \`${char.Id}\`, Class: \` ${char.Class} \`, Race: \` ${char.Race} \`)`;
       }).join("\n");
 
       await interaction.reply(`Your characters:\n${characterList}`);

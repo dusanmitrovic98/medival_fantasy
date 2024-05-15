@@ -56,22 +56,32 @@ module.exports = {
             inline: false,
           },
           {
+            name: "/\`my-characters\`",
+            value: "",
+            inline: false,
+          },
+          {
             name: "/\`remove-character\` [character-id]",
             value: "",
             inline: false,
           },
+          // {
+          //   name: "/\`power-up\` [character-id] [stat-name] [amount]",
+          //   value: "",
+          //   inline: false,
+          // },
           {
-            name: "/\`power-up\` [character-id] [stat-name] [amount]",
+            name: "/\`power-up\` [stat-name] [amount]",
             value: "",
             inline: false,
           },
+          // {
+          //   name: "/\`reset-stats\` [character-id]",
+          //   value: "",
+          //   inline: false,
+          // },
           {
-            name: "/\`reset-stats\` [character-id]",
-            value: "",
-            inline: false,
-          },
-          {
-            name: "/\`my-characters\`",
+            name: "/\`reset-stats\`",
             value: "",
             inline: false,
           },

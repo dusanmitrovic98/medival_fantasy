@@ -7,35 +7,15 @@ module.exports = {
   cooldown: 5,
   category: "characters",
   data: new SlashCommandBuilder()
-    .setName("power-up")
-    .setDescription("Increases a character's status point")
+    .setName("reset-attributes")
+    .setDescription("Resets a character's attributes to base values and recalculates status points"),
     // .addStringOption(option =>
     //     option.setName("character-id")
-    //       .setDescription("Id of the character which stats are to be updated.")
+    //       .setDescription("Id of the character whose stats are to be reset.")
     //       .setRequired(true)
-    //   )
-    .addStringOption(option =>
-      option.setName("stat-name")
-        .setDescription("Select status that you want to upgrade.")
-        .addChoices(
-          { name: "STR", value: "STR" },
-          { name: "DEX", value: "DEX" },
-          { name: "CON", value: "CON" },
-          { name: "INT", value: "INT" },
-          { name: "WIS", value: "WIS" },
-          { name: "CHA", value: "CHA" },
-        )
-        .setRequired(true)
-    )
-    .addIntegerOption(option =>
-      option.setName("amount")
-        .setDescription("Amount of points to use for the upgrade.")
-        .setRequired(true)
-    ),
+    //   ),
   async execute(interaction) {
     // const characterId = interaction.options.getString("character-id");
-    const statusName = interaction.options.getString("stat-name");
-    const amount = interaction.options.getInteger("amount");
     const memberId = interaction.member.user.id;
 
     const user = await User.findOne({ userId: memberId })
@@ -54,15 +34,19 @@ module.exports = {
     //   return interaction.reply("Character not found");
     // }
 
-    if (character.AttributePoints < amount) {
-      return interaction.reply("Insufficient Status Points");
-    }
+    const baseValue = 10;
+    const attributeNames = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+    let pointsToReset = 0;
 
-    character.AttributePoints -= amount;
-    character[statusName] += amount;
+    attributeNames.forEach(stat => {
+      pointsToReset += character[stat] - baseValue;
+      character[stat] = baseValue;
+    });
+
+    character.AttributePoints += pointsToReset;
 
     await character.save();
 
-    return interaction.reply(`Increased ${statusName} by ${amount}`);
+    return interaction.reply(`All attributes reset to **${baseValue}**. Reclaimed  \`${pointsToReset}\` attribute points.`);
   },
 };

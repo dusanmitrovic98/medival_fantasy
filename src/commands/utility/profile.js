@@ -20,7 +20,7 @@ module.exports = {
       const character = await findSelectedCharacter(user.selectedCharacterId);
 
       if (!character) {
-        return await interaction.reply(`Please select a character first \`/select-character [character-id]\`. \nTo check all your characters use /\`my-characters\` command.`);
+        return await interaction.reply(`Please select a character first \`/select-character [character-id]\`. \nTo check all your characters use /\`my-characters\` command. \nIf you do not have a character /\`create-character\` [name] [class] [race].`);
       }
 
       const embed = buildProfileEmbed(interaction.user.username, character);
@@ -47,7 +47,8 @@ function buildProfileEmbed(username, character) {
     description: "Here is your selected character profile:",
     color: 0x0099ff,
     fields: [
-      { name: "", value: `Name:  ** ${character.Name} **` },
+      { name: "", value: `ID:  **\` ${character.Id} \`**` },
+      { name: "", value: `Name:  **\` ${character.Name} \`**` },
       { name: "", value: `Class:  \` ${character.Class} \`` },
       { name: "", value: `Race:  \` ${character.Race} \`` },
       { name: "", value: `Level:  \` ${character.Level} \`` },
